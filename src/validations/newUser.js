@@ -13,7 +13,7 @@ async function validateNewUser(userData) {
         message: joiValidation.error.details[0].message,
       });
 
-      return validation;
+      return { validation };
     }
 
     const isUser = await findUser(userData.email);
@@ -24,14 +24,14 @@ async function validateNewUser(userData) {
         message: 'This email is already registered.',
       });
 
-      return validation;
+      return { validation };
     }
 
-    return validation;
+    return { validation };
   } catch (error) {
     validation = generateErrorMessage({ isUnknown: true });
 
-    return validation;
+    return { validation };
   }
 }
 

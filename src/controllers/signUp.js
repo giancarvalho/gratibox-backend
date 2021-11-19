@@ -3,7 +3,7 @@ import validateNewUser from '../validations/newUser.js';
 
 async function signUp(req, res) {
   const userData = req.body;
-  const validation = await validateNewUser(userData);
+  const { validation } = await validateNewUser(userData);
 
   try {
     if (validation.isInvalid) throw validation.errorCode;
