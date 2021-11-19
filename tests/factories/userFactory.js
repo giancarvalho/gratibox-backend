@@ -10,4 +10,14 @@ function createFakeUser() {
   return userData;
 }
 
-export default createFakeUser;
+function createInvalidFakeUser() {
+  const invalidUserData = {
+    name: faker.commerce.price(),
+    email: faker.lorem.words(),
+    password: faker.lorem.paragraph(),
+  };
+
+  return invalidUserData;
+}
+
+export { createFakeUser, createInvalidFakeUser };

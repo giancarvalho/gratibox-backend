@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import pool from '../database.js';
+import pool from '../../database.js';
 
 async function insertUserDB(userData) {
   const password = bcrypt.hashSync(userData.password, 10);
