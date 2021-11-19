@@ -1,6 +1,6 @@
 import pool from '../../database.js';
 
-async function getTokenData(query) {
+async function getTokenDataDB(query) {
   const filter = Number(query) ? `user_id` : 'token';
 
   const result = await pool.query(
@@ -11,4 +11,4 @@ async function getTokenData(query) {
   return result.rows[0];
 }
 
-export default getTokenData;
+export default getTokenDataDB;

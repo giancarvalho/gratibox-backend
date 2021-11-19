@@ -1,6 +1,6 @@
 import { v4 as tokenGenerator } from 'uuid';
-import createToken from '../queries/sessions/createToken.js';
-import getTokenData from '../queries/sessions/getTokenData.js';
+import insertTokenDB from '../queries/sessions/insertTokenDB.js';
+import getTokenDataDB from '../queries/sessions/getTokenDataDB.js';
 import validateUser from '../validations/user.js';
 
 async function signIn(req, res) {
@@ -10,7 +10,7 @@ async function signIn(req, res) {
   try {
     if (validation.isInvalid) throw validation.errorCode;
 
-    const tokenSearch = await getTokenData(user.id);
+    const tokenSearch = await getTokenDataDB(user.id);
 
     let userToken;
 
@@ -19,7 +19,7 @@ async function signIn(req, res) {
     } else {
       userToken = tokenGenerator();
 
-      await createToken(user.id, userToken);
+      await insertTokenDB(user.id, userToken);
     }
 
     res.send({ name: user.name, token: userToken });
