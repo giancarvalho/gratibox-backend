@@ -12,6 +12,7 @@ import createRandomNumber from './factories/randomNumberFactory';
 import getStatesDB from '../src/queries/addresses/getStatesDB';
 import createFakeAddress from './factories/addressFactory';
 import getOptionsDB from '../src/queries/plans/getOptionsDB';
+import getRandomPlan from './factories/planFactory';
 
 describe('POST /sign-up', () => {
   let planData;
@@ -23,14 +24,13 @@ describe('POST /sign-up', () => {
     await insertTokenDB(userId, userToken);
 
     const addressData = createFakeAddress();
-    const plans = await getPlansDB();
+    const planDetails = await getRandomPlan();
     const states = await getStatesDB();
     const options = await getOptionsDB();
 
-    const planId = plans[createRandomNumber(plans.length - 1)].id;
     addressData.stateId = states[createRandomNumber(states.length - 1)].id;
 
-    planData = { userId, planId, addressData, options };
+    planData = { userId, planDetails, addressData, options };
   });
 
   afterAll(async () => {

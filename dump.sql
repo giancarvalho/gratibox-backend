@@ -12,7 +12,8 @@ CREATE TABLE "users" (
 
 CREATE TABLE "addresses" (
 	"id" serial NOT NULL,
-	"user_id" integer NOT NULL,
+	"user_plan_id" integer NOT NULL,
+	"recipient" varchar(255) NOT NULL,
 	"address" varchar(255) NOT NULL,
 	"city" varchar(255) NOT NULL,
 	"state_id" integer NOT NULL,
@@ -40,7 +41,8 @@ CREATE TABLE "users_plans" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"plan_id" integer NOT NULL,
-	"timestamp" TIMESTAMP(255) NOT NULL,
+	"timestamp" TIMESTAMP NOT NULL DEFAULT 'now()',
+	"day" integer NOT NULL,
 	CONSTRAINT "users_plans_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -103,7 +105,7 @@ CREATE TABLE "options" (
 
 
 
-ALTER TABLE "addresses" ADD CONSTRAINT "addresses_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "addresses" ADD CONSTRAINT "addresses_fk0" FOREIGN KEY ("user_plan_id") REFERENCES "users_plans"("id");
 ALTER TABLE "addresses" ADD CONSTRAINT "addresses_fk1" FOREIGN KEY ("state_id") REFERENCES "states"("id");
 
 
@@ -154,4 +156,4 @@ VALUES
 ('SP'),
 ('TO');
 
-INSERT INTO options (name) VALUES ('Chás'), ('Incensos'), ('Produtos orgânicos');
+INSERT INTO options (name) VALUES ('Chás'), ('Incensos'), ('Produtos orgânicos')
