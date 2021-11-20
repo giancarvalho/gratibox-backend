@@ -1,4 +1,4 @@
-import getTokenDataDB from '../queries/sessions/getTokenDataDB';
+import getTokenDataDB from '../queries/sessions/getTokenDataDB.js';
 
 async function auth(req, res, next) {
   const token = req.headers.authorization?.replace('Bearer ', '');

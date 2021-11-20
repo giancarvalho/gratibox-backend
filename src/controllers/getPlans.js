@@ -1,4 +1,4 @@
-import getPlansDB from '../queries/plans/getPlansDB';
+import getPlansDB from '../queries/plans/getPlansDB.js';
 
 async function getPlans(req, res) {
   try {
