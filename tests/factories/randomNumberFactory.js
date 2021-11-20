@@ -1,5 +1,7 @@
-function createRandomNumber(max) {
-  return Math.round(Math.random() * max);
+function chooseRandom(list) {
+  const item = list[Math.round(Math.random() * list.length)];
+
+  return item;
 }
 
-export default createRandomNumber;
+export default chooseRandom;

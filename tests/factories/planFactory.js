@@ -1,11 +1,14 @@
 import getPlansDB from '../../src/queries/plans/getPlansDB';
-import createRandomNumber from './randomNumberFactory';
+import chooseRandom from './randomNumberFactory';
 
 async function getRandomPlan() {
   const plans = await getPlansDB();
-  const plan = plans[createRandomNumber(plans.length - 1)];
+  const plan = chooseRandom(plans);
+
   const day =
-    plan.name === 'mensal' ? createRandomNumber(30) : createRandomNumber(6);
+    plan.name === 'mensal'
+      ? chooseRandom([1, 10, 20])
+      : chooseRandom([0, 1, 2, 3, 4, 5, 6]);
 
   return { planId: plan.id, day };
 }

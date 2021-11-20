@@ -13,6 +13,7 @@ import getStatesDB from '../src/queries/addresses/getStatesDB';
 import createFakeAddress from './factories/addressFactory';
 import getOptionsDB from '../src/queries/plans/getOptionsDB';
 import getRandomPlan from './factories/planFactory';
+import chooseRandom from './factories/randomNumberFactory';
 
 describe('POST /sign-up', () => {
   let planData;
@@ -28,7 +29,7 @@ describe('POST /sign-up', () => {
     const states = await getStatesDB();
     const options = await getOptionsDB();
 
-    addressData.stateId = states[createRandomNumber(states.length - 1)].id;
+    addressData.stateId = chooseRandom(states).id;
 
     planData = { userId, planDetails, addressData, options };
   });
