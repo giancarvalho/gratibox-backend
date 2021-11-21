@@ -14,6 +14,7 @@ import createFakeAddress from './factories/addressFactory';
 import getOptionsDB from '../src/queries/plans/getOptionsDB';
 import getRandomPlan from './factories/planFactory';
 import chooseRandom from './factories/randomNumberFactory';
+import faker from 'faker';
 
 describe('POST /sign-up', () => {
   let planData;
@@ -27,7 +28,7 @@ describe('POST /sign-up', () => {
     const addressData = createFakeAddress();
     const planDetails = await getRandomPlan();
     const states = await getStatesDB();
-    const options = await getOptionsDB();
+    const options = (await getOptionsDB()).map((option) => option.id);
 
     addressData.stateId = chooseRandom(states).id;
 
@@ -37,6 +38,20 @@ describe('POST /sign-up', () => {
   afterAll(async () => {
     await cleanDB();
     pool.end();
+  });
+
+  it('should return 400 if options are not valid', async () => {
+    const data = {
+      ...planData,
+      options: chooseRandom([undefined, [], faker.lorem.word()]),
+    };
+
+    const result = await supertest(app)
+      .post('/plans')
+      .send(data)
+      .set('Authorization', `Bearer ${userToken}`);
+
+    expect(result.status).toEqual(400);
   });
 
   it('should return 200 if subscription is done successfully', async () => {

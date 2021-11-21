@@ -5,7 +5,7 @@ async function insertOptionsUserPlanDB(userPlanId, options) {
   const optionsValues = [];
 
   options.forEach((option) => {
-    optionsValues.push([option.id, userPlanId]);
+    optionsValues.push([option, userPlanId]);
   });
 
   await pool.query(
