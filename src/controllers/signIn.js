@@ -2,6 +2,7 @@ import { v4 as tokenGenerator } from 'uuid';
 import insertTokenDB from '../queries/sessions/insertTokenDB.js';
 import getTokenDataDB from '../queries/sessions/getTokenDataDB.js';
 import validateUser from '../validations/user.js';
+import getUserSubscriptionDB from '../queries/plans/getUserSubscriptionDB.js';
 
 async function signIn(req, res) {
   const userData = req.body;
@@ -11,6 +12,8 @@ async function signIn(req, res) {
     if (validation.isInvalid) throw validation.errorCode;
 
     const tokenSearch = await getTokenDataDB(user.id);
+
+    const isSubscribed = (await getUserSubscriptionDB(user.id)).length > 0;
 
     let userToken;
 
@@ -22,7 +25,7 @@ async function signIn(req, res) {
       await insertTokenDB(user.id, userToken);
     }
 
-    res.send({ name: user.name, token: userToken });
+    res.send({ name: user.name, token: userToken, isSubscribed });
   } catch (error) {
     if (validation.isInvalid) {
       return res.status(error).send(validation.errorMessage);
