@@ -4,7 +4,7 @@ import insertUserPlanDB from '../queries/plans/insertUserPlanDB.js';
 import getTokenDataDB from '../queries/sessions/getTokenDataDB.js';
 import validateNewSubscription from '../validations/newSubscription.js';
 
-async function signToPlan(req, res) {
+async function subscribeUser(req, res) {
   const token = req.headers.authorization?.replace('Bearer ', '');
   const { planDetails, addressData, options } = req.body;
   const { validation } = await validateNewSubscription(
@@ -32,4 +32,4 @@ async function signToPlan(req, res) {
   }
 }
 
-export default signToPlan;
+export default subscribeUser;

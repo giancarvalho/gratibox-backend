@@ -47,7 +47,7 @@ describe('POST /sign-up', () => {
     };
 
     const result = await supertest(app)
-      .post('/plans')
+      .post('/subscription')
       .send(data)
       .set('Authorization', `Bearer ${userToken}`);
 
@@ -56,7 +56,7 @@ describe('POST /sign-up', () => {
 
   it('should return 200 if subscription is done successfully', async () => {
     const result = await supertest(app)
-      .post('/plans')
+      .post('/subscription')
       .send(planData)
       .set('Authorization', `Bearer ${userToken}`);
 

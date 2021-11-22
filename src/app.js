@@ -4,7 +4,7 @@ import signUp from './controllers/signUp.js';
 import signIn from './controllers/signIn.js';
 import getPlans from './controllers/getPlans.js';
 import auth from './middlewares/auth.js';
-import signToPlan from './controllers/signToPlan.js';
+import subscribeUser from './controllers/subscribeUser.js';
 import getFormDetails from './controllers/getFormDetails.js';
 import getUserSubscription from './controllers/getSubscription.js';
 
@@ -15,9 +15,9 @@ app.use(cors());
 app.post('/sign-in', signIn);
 app.post('/sign-up', signUp);
 
-app.post('/plans', auth, signToPlan);
 app.get('/plans', auth, getPlans);
 
+app.post('/subscription', auth, subscribeUser);
 app.get('/subscription', auth, getUserSubscription);
 
 app.get('/form-details', auth, getFormDetails);
