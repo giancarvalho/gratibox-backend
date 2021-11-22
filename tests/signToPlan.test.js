@@ -32,7 +32,7 @@ describe('POST /sign-up', () => {
 
     addressData.stateId = chooseRandom(states).id;
 
-    planData = { userId, planDetails, addressData, options };
+    planData = { planDetails, addressData, options };
   });
 
   afterAll(async () => {

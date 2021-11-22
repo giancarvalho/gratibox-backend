@@ -1,10 +1,12 @@
-import insertAddressDB from '../queries/addresses/insertAddressDB';
-import insertOptionsUserPlanDB from '../queries/plans/insertOptionsUserPlanDB';
-import insertUserPlanDB from '../queries/plans/insertUserPlanDB';
-import validateNewSubscription from '../validations/newSubscription';
+import insertAddressDB from '../queries/addresses/insertAddressDB.js';
+import insertOptionsUserPlanDB from '../queries/plans/insertOptionsUserPlanDB.js';
+import insertUserPlanDB from '../queries/plans/insertUserPlanDB.js';
+import getTokenDataDB from '../queries/sessions/getTokenDataDB.js';
+import validateNewSubscription from '../validations/newSubscription.js';
 
 async function signToPlan(req, res) {
-  const { userId, planDetails, addressData, options } = req.body;
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  const { planDetails, addressData, options } = req.body;
   const { validation } = await validateNewSubscription(
     planDetails,
     addressData,
@@ -13,6 +15,7 @@ async function signToPlan(req, res) {
 
   try {
     if (validation.isInvalid) throw validation.errorCode;
+    const userId = (await getTokenDataDB(token)).user_id;
 
     const userPlanId = await insertUserPlanDB(userId, planDetails);
     await insertOptionsUserPlanDB(userPlanId, options);
