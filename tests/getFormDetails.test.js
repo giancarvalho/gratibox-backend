@@ -8,7 +8,7 @@ import insertUserDB from '../src/queries/users/insertUserDB';
 import createFakeToken from './factories/tokenFactory';
 import insertTokenDB from '../src/queries/sessions/insertTokenDB';
 
-describe('GET /plans', () => {
+describe('GET /form-details', () => {
   const user = createFakeUser();
   const userToken = createFakeToken();
 
@@ -23,12 +23,12 @@ describe('GET /plans', () => {
   });
 
   it('should return 401 token is not sent', async () => {
-    const result = await supertest(app).get('/plans');
+    const result = await supertest(app).get('/form-details');
 
     expect(result.status).toEqual(401);
   });
 
-  it('should return list with plans if token is sent', async () => {
+  it('should return list with form details if token is sent', async () => {
     const result = await supertest(app)
       .get('/plans')
       .set('Authorization', `Bearer ${userToken}`);
