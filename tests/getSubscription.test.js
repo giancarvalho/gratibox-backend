@@ -17,7 +17,6 @@ import insertOptionsUserPlanDB from '../src/queries/plans/insertOptionsUserPlanD
 import insertAddressDB from '../src/queries/addresses/insertAddressDB';
 
 describe('POST /sign-up', () => {
-  let planData;
   const userToken = createFakeToken();
 
   beforeAll(async () => {

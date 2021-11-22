@@ -9,8 +9,6 @@ async function getUserSubscription(req, res) {
 
     res.send(subscription);
   } catch (error) {
-    console.log(error);
-
     res.sendStatus(500);
   }
 }

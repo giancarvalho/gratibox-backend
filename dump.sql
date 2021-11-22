@@ -104,6 +104,18 @@ CREATE TABLE "options" (
 
 
 
+CREATE TABLE "days" (
+	"id" serial NOT NULL,
+	"name" varchar(10) NOT NULL,
+	"value" integer NOT NULL,
+	"plan_id" integer NOT NULL,
+	CONSTRAINT "days_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 
 ALTER TABLE "addresses" ADD CONSTRAINT "addresses_fk0" FOREIGN KEY ("user_plan_id") REFERENCES "users_plans"("id");
 ALTER TABLE "addresses" ADD CONSTRAINT "addresses_fk1" FOREIGN KEY ("state_id") REFERENCES "states"("id");
@@ -121,10 +133,12 @@ ALTER TABLE "options_users_plans" ADD CONSTRAINT "options_users_plans_fk1" FOREI
 ALTER TABLE "ratings" ADD CONSTRAINT "ratings_fk0" FOREIGN KEY ("user_plan_id") REFERENCES "users_plans"("id");
 
 
-INSERT INTO plans (name, img_url, description) VALUES ('mensal', 'https://i.imgur.com/NQ13yjA.jpg', 'Você recebe um box por mês. Ideal para quem está começando agora.');
+ALTER TABLE "days" ADD CONSTRAINT "days_fk0" FOREIGN KEY ("plan_id") REFERENCES "plans"("id");
 
 
-INSERT INTO plans (name, img_url, description) VALUES ('semanal', 'https://i.imgur.com/HXqApOB.jpg', 'Você recebe um box por semana. Ideal para quem quer exercer a gratidão todos os dias.');
+
+
+INSERT INTO plans (name, img_url, description) VALUES ('mensal', 'https://i.imgur.com/NQ13yjA.jpg', 'Você recebe um box por mês. Ideal para quem está começando agora.'), ('semanal', 'https://i.imgur.com/HXqApOB.jpg', 'Você recebe um box por semana. Ideal para quem quer exercer a gratidão todos os dias.');
 
 INSERT INTO states (name) 
 VALUES
@@ -156,4 +170,7 @@ VALUES
 ('SP'),
 ('TO');
 
-INSERT INTO options (name) VALUES ('Chás'), ('Incensos'), ('Produtos orgânicos')
+INSERT INTO options (name) VALUES ('Chás'), ('Incensos'), ('Produtos orgânicos');
+
+INSERT INTO days (name, value, plan_id) VALUES ('Seg', 1, 2), ('Qua', 3, 2), ('Sex', 5, 2), (
+'01', 1, 1), ('10', 10, 1), ('20', 20, 1);
