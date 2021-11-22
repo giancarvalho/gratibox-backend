@@ -41,7 +41,6 @@ async function validateUser(userData) {
 
     return { validation, user };
   } catch (error) {
-    console.log(error);
     validation = generateErrorMessage({ isUnknown: true });
 
     return { validation };
