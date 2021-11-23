@@ -22,7 +22,7 @@ You are in the backend repository, you can see the [front-end part here](https:/
 4) Create the env files using the info of your DB, following the env.example
 5) Run ```npm run start:dev```
 
-
+### Endpoints guide (incomplete)
 
 POST \sign-up - requires an object following the model:
 
