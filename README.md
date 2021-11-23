@@ -49,7 +49,7 @@ POST \sign-in - requires an object following the model:
       
 ```
 
-POST \subscriptions - requires a registered uuid token and an object following the model (options is an list of options ids):
+POST \subscriptions - requires a registered uuid token and an object following the model:
 
 ```  
 
@@ -65,6 +65,8 @@ POST \subscriptions - requires a registered uuid token and an object following t
         options: [ 1, 2, 3 ]
       }
 ```
+
+(```options``` is an array of option's ids)
 
 --- 
 This is the 15th project of Driven's Full-stack Web Dev Course. 
