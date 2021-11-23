@@ -1,9 +1,11 @@
 
 ## Gratibox
 
-Gratibox is a fictional website that helps you stay grateful. Customers can choose between two recurring subscription plans: weekly or monthly. Each choice includes the delivery of assorted products such as teas, organic products, incense sticks. Simply select a plan, your preferred delivery day and which types of products you want to receive and start being grateful. 
+Gratibox is a fictional startup that helps you stay grateful. Customers can choose between two recurring subscription plans: weekly or monthly. Each choice includes the delivery of assorted products such as teas, organic products and incense sticks. Simply select a plan, your preferred delivery day, which types of products you want to receive and start being grateful. 
 
-This is the 15th project of Driven's Full-stack Web Dev Course. 
+
+You are in the backend repository, you can see the [front-end part here](https://github.com/giancarvalho/gratibox-frontend)
+
 
 ## Main technologies - backend
 
@@ -62,3 +64,6 @@ POST \subscriptions - requires a registered uuid token and an object following t
         options: [ 1, 2, 3 ]
       }
 ```
+
+--- 
+This is the 15th project of Driven's Full-stack Web Dev Course. 
