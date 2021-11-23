@@ -12,6 +12,7 @@ You are in the backend repository, you can see the [front-end part here](https:/
 - Node.js
 - Express
 - Postgres
+- Jest
 
 ## How to run this project
 
